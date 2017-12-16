@@ -23,11 +23,17 @@ def which(program):
             return program
     else:
         for path in os.environ["PATH"].split(os.pathsep):
+            print "testing",path
             path = path.strip('"')
             exe_file = os.path.join(path, program)
             if is_exe(exe_file):
                 return exe_file
-
+            else:
+                exe_file += '.exe'
+                if is_exe(exe_file):
+                    print "found there"
+                    return exe_file
+            print "not found there"
     return None
 
 class Singleton:
